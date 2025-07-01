@@ -10,20 +10,20 @@ module module_logic #(
     reg [WIDTH - 1:0] result_r;
 
     // localparam : chính là hằng số (parameter) cục bộ
-    localparam gAND             = 4'b0001;
-    localparam gOR              = 4'b0010;
-    localparam gNOT             = 4'b0011;
-    localparam gXOR             = 4'b0100;
-    localparam gNAND            = 4'b0101;
-    localparam gNOR             = 4'b0110;
+    localparam gAND             = 5'b00001;
+    localparam gOR              = 5'b00010;
+    localparam gNOT             = 5'b00011;
+    localparam gXOR             = 5'b00100;
+    localparam gNAND            = 5'b00101;
+    localparam gNOR             = 5'b00110;
 
-    localparam SHIFT_RIGHT      = 4'b0111;
-    localparam SHIFT_RIGHT_ARITH= 4'b1000;
-    localparam SHIFT_LEFT       = 4'b1001;
+    localparam SHIFT_RIGHT      = 5'b00111;
+    localparam SHIFT_RIGHT_ARITH= 5'b01000;
+    localparam SHIFT_LEFT       = 5'b01001;
 
-    localparam COMPARE          = 4'b1010;
-    localparam BIGGER           = 4'b1011;
-    localparam SMALLER          = 4'b1100;
+    localparam COMPARE          = 5'b01010;
+    localparam BIGGER           = 5'b01011;
+    localparam SMALLER          = 5'b01100;
  
 
     reg [31:16] shift_right_fill_r;
@@ -52,7 +52,7 @@ module module_logic #(
                 begin
                     result_r = ~alu_a;
                 end
-            gXOR:
+            gNOR:
                 begin
                     result_r = ~(alu_a | alu_b);
                 end
@@ -60,7 +60,7 @@ module module_logic #(
                 begin
                     result_r = ~(alu_a & alu_b);
                 end
-            gNOR:
+            gXOR:
                 begin
                     result_r = (~alu_a&alu_b) | (~alu_b&alu_a);
                 end
